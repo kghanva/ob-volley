@@ -1,0 +1,71 @@
+apply plugin: 'com.android.library'
+
+ext {
+    bintrayRepo = 'maven'
+    bintrayName = 'ob-volley-lib'
+
+    publishedGroupId = 'com.optimumbrew'
+    libraryName = 'optimumbrewlibrary'
+    artifact = 'ob-volley-lib'
+
+    libraryDescription = 'Wrapper to handle network request response using vollyd'
+
+
+    libraryVersion = '1.0'
+
+    developerId = 'kghanva'
+    developerName = 'Krishna Ghanva'
+    developerEmail = 'krishnaghanva1993@gmail.com'
+
+    licenseName = 'The Apache Software License, Version 2.0'
+    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+    allLicenses = ["Apache-2.0"]
+}
+
+android {
+    compileSdkVersion 23
+    buildToolsVersion "23.0.2"
+
+    //for multipart request
+    useLibrary 'org.apache.http.legacy'
+
+    defaultConfig {
+        minSdkVersion 15
+        targetSdkVersion 23
+        versionCode 1
+        versionName "1.0"
+        setProperty("archivesBaseName", "OptimumBrew_Library_$versionName.$versionCode")
+
+    }
+    buildTypes {
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    //compile fileTree(dir: 'libs', include: ['*.jar'])
+
+    compile('org.apache.httpcomponents:httpmime:4.3.6') {
+        exclude module: 'httpclient'
+    }
+    compile 'org.apache.httpcomponents:httpclient-android:4.3.5'
+
+    compile 'com.android.support:appcompat-v7:23.4.0'
+    compile 'com.mcxiaoke.volley:library:1.0.+'
+    compile 'com.google.code.gson:gson:2.6.2'
+    compile 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'
+    /*testCompile 'junit:junit:4.12'
+    androidTestCompile 'com.android.support.test.espresso:espresso-core:2.2.2'
+    androidTestCompile 'com.android.support.test:runner:0.5'
+    androidTestCompile 'com.android.support:support-annotations:23.4.0'*/
+
+
+
+}
+
+
+apply from: 'https://raw.githubusercontent.com/kghanva/JCenter/master/installv1.gradle'
+apply from: 'https://raw.githubusercontent.com/kghanva/JCenter/master/bintrayv1.gradle'
